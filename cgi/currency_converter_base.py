@@ -38,7 +38,7 @@ def getrates():
         filename = download_rates('http://www.ecb.europa.eu/stats/eurofxref/eurofxref.zip')
     except urllib.error.URLError:
         # use old revision offline
-        filename = 'base/eurofxref.csv'
+        filename = 'eurofxref-10-07-2018.csv'
     with open(filename, newline='') as csvfile:
         reader = csv.reader(csvfile, skipinitialspace=True, delimiter=',', quotechar='|')
         rows = [r for r in reader]

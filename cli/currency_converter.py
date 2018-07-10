@@ -2,7 +2,7 @@
 
 import argparse
 import json
-from base import currency_converter_base as CC
+import currency_converter_base as CC
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--amount", action="store", type=float, required=True)

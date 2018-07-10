@@ -2,7 +2,7 @@
 import cgi
 import cgitb
 import json
-import base.currency_converter_base as CC
+import currency_converter_base as CC
 
 #header
 print("Content-Type: application/json")
