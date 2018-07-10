@@ -1,8 +1,11 @@
 #!C:\Users\martin.hanyas\AppData\Local\Programs\Python\Python36\python.exe
+
 import cgi
 import cgitb
 import json
-import currency_converter_base as CC
+import sys
+sys.path.append('../')
+from base import currency_converter_base as CC
 
 #header
 print("Content-Type: application/json")

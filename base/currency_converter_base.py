@@ -1,7 +1,8 @@
-#!/usr/bin/python3
+#!C:\Users\martin.hanyas\AppData\Local\Programs\Python\Python36\python.exe
 
 import urllib.error
 import csv
+import os
 
 supported_currencies = ['AUD','BGN','BRL','CAD','CHF','CNY','CZK','DKK','EUR','GBP','HKD','HRK','HUF','IDR',
                         'ILS','INR','ISK','JPY','KRW','MXN','MYR','NOK','NZD','PHP','PLN','RON','RUB','SEK',
@@ -38,7 +39,8 @@ def getrates():
         filename = download_rates('http://www.ecb.europa.eu/stats/eurofxref/eurofxref.zip')
     except urllib.error.URLError:
         # use old revision offline
-        filename = 'eurofxref-10-07-2018.csv'
+        scriptDirectory = os.path.dirname(os.path.realpath(__file__))
+        filename = scriptDirectory + '/eurofxref-10-07-2018.csv'
     with open(filename, newline='') as csvfile:
         reader = csv.reader(csvfile, skipinitialspace=True, delimiter=',', quotechar='|')
         rows = [r for r in reader]

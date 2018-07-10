@@ -1,8 +1,10 @@
-#!/usr/bin/python3
+#!C:\Users\martin.hanyas\AppData\Local\Programs\Python\Python36\python.exe
 
 import argparse
 import json
-import currency_converter_base as CC
+import sys
+sys.path.append('../')
+from base import currency_converter_base as CC
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--amount", action="store", type=float, required=True)
