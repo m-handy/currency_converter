@@ -1,7 +1,8 @@
 # currency_converter
 ## Modules:
-- cgi - REST API
 - cli - command line tool
+- cgi - REST API
+- base - offline exchange rates & core of converter logic
 
 ## Usage
 ### CLI
