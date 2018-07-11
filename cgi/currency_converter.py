@@ -14,6 +14,7 @@ print("")
 amount = None
 input_c = None
 output_c = None
+warning = None
 
 arguments = cgi.FieldStorage()
 for i in arguments.keys():
@@ -21,10 +22,18 @@ for i in arguments.keys():
         amount = float(arguments[i].value)
         continue   
     if i == 'input_currency':
-        input_c = arguments[i].value
+        if arguments[i].value in CC.supported_currencies+CC.supported_signs:
+            input_c = arguments[i].value
+        else:
+            print(json.dumps({'error' : "unsupported currency", 
+                            "supported currencies & symbols" : CC.supported_currencies+CC.supported_signs}))
+            sys.exit()
         continue
     if i == 'output_currency':
-        output_c = arguments[i].value
+        if arguments[i].value in CC.supported_currencies+CC.supported_signs:
+            output_c = arguments[i].value
+        else:
+            warning = "unsupported output currency"
         continue
 
 if(not amount):
@@ -36,5 +45,8 @@ if(not input_c):
     print("")
 
 output_dict = CC.convert(amount, input_c, output_c)
-print(json.dumps({'input': {'amount':amount, 'currency':CC.translate(input_c)}, 
-                'output': output_dict}, sort_keys=True, indent=4))
+if warning:
+    print(json.dumps({'warning': warning, 'input': {'amount':amount, 'currency':CC.translate(input_c)}, 'output': output_dict}, indent=4))
+else:
+    print(json.dumps({'input': {'amount':amount, 'currency':CC.translate(input_c)}, 
+                    'output': output_dict}, sort_keys=True, indent=4))
